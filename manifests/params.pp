@@ -18,19 +18,19 @@ class nginx::params {
   $config_log_dir  = '/var/log/nginx'
   $config_pid_file = '/run/nginx.pid'
 
-  $config_vdir_enable = $facts['os']['family'] ? {
-    'Debian' => "${config_dir}",
+  $config_vdir_enable = $::facts['os']['family'] ? {
+    'Debian' => $config_dir,
     default  => undef,
   }
 
-  $config_process_user = $facts['os']['family'] ? {
+  $config_process_user = $::facts['os']['family'] ? {
     'Debian' => 'www-data',
     default  => 'nginx',
   }
   
-  $vhost_dir = $facts['os']['family'] ? {
+  $vhost_dir = $::facts['os']['family'] ? {
     'Debian' => "${config_dir}/sites-avaliable",
-    default  => "${config_confd}"
+    default  => $config_confd
   }
   
   $service_name       = 'nginx'

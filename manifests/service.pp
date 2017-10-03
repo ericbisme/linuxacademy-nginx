@@ -6,7 +6,7 @@
 #
 # @example
 #   include nginx::service
-class nginx::service {
+class nginx::service (
   String $ensure       = $::nginx::service_ensure,
   String $service_name = $::nginx::service_name,
   String $pattern      = $::nginx::service_pattern,
@@ -14,7 +14,7 @@ class nginx::service {
   Boolean $hasstatus   = $::nginx::service_hasstatus,
   Boolean $hasrestart  = $::nginx::service_hasrestart,
 ) {
-  service { 'nginx_service': 
+  service { 'nginx_service':
     ensure     => $ensure,
     name       => $service_name,
     enable     => $enable,

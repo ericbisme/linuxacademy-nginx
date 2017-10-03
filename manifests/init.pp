@@ -6,7 +6,7 @@
 #
 # @example
 #   include nginx
-class nginx {
+class nginx (
   String $ensure                       = $::nginx::params::ensure,
   String $package_name                 = $::nginx::params::package_name,
   String $config_dir                   = $::nginx::params::config_dir,

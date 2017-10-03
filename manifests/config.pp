@@ -6,7 +6,7 @@
 #
 # @example
 #   include nginx::config
-class nginx::config {
+class nginx::config (
   String $ensure                = $::nginx::config_ensure,
   String $config_dir            = $::nginx::config_dir,
   String $mode                  = $::nginx::config_mode,
@@ -19,12 +19,12 @@ class nginx::config {
   String $process_user          = $::nginx::config_process_user,
   String $docroot               = $::nginx::docroot,
 ) {
-  file { 'nginx.conf': 
-    ensure => $ensure,
-    path   => "${config_dir}/nginx.conf",
-    mode   => $mode,
-    owner  => $owner,
-    group  => $group,
+  file { 'nginx.conf':
+    ensure  => $ensure,
+    path    => "${config_dir}/nginx.conf",
+    mode    => $mode,
+    owner   => $owner,
+    group   => $group,
     content => template("${module_name}/conf.d/nginx.conf.erb"),
   }
 
@@ -33,7 +33,7 @@ class nginx::config {
     recurse => true,
   }
   
-  file { $docroot: 
+  file { $docroot:
     ensure  => directory,
     recurse => true,
     owner   => $owner,
